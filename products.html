@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Full Collection - OutfitWaala Haute Couture</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Top Luxury Ticker Bar -->
+  <div class="luxury-top-bar">
+    <div class="container">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span class="ticker-badge">STUDIO SELECTION</span>
+        <span>✨ 100% Pure Fabrics with Handcrafted Detailing. Direct WhatsApp Checkout.</span>
+      </div>
+      <div>
+        <a href="tel:9876543210"><i class="fa-solid fa-phone-volume"></i> VIP Concierge: <strong class="store-phone">+91 9876543210</strong></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ultra Premium Navbar -->
+  <header class="navbar">
+    <div class="container nav-content">
+      <a href="index.html" class="logo-container">
+        <div class="logo-crown-box">
+          <i class="fa-solid fa-crown"></i>
+        </div>
+        <div class="logo-text">
+          <h1>Outfit<span>Waala</span></h1>
+          <p>THE LUXURY FASHION STUDIO</p>
+        </div>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html" class="active">All Collections</a></li>
+        <li><a href="products.html?category=men">Men's Edit</a></li>
+        <li><a href="products.html?category=women">Women's Couture</a></li>
+        <li><a href="products.html?category=ethnic">Royal Ethnic</a></li>
+        <li><a href="contact.html">Store & Stylist</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="cart.html" class="btn-cart-lux">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span>Cart</span>
+          <span class="cart-badge-lux cart-badge" style="display: none;">0</span>
+        </a>
+        <a href="admin/login.html" class="btn-dukandar-portal">
+          <i class="fa-solid fa-store"></i>
+          <span>Dukandar Panel</span>
+        </a>
+        <button class="menu-toggle" id="menuToggle">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Products Catalog -->
+  <main class="lux-section">
+    <div class="container">
+      <div style="margin-bottom: 35px; text-align: center;">
+        <span class="lux-pretitle">The Master Catalog</span>
+        <h2 class="lux-title">Explore The Full Collection</h2>
+        <p class="lux-subtitle">Dukandar dwaara update kiye gaye live kapde aur rates</p>
+      </div>
+
+      <!-- Luxury Filter and Search Bar -->
+      <div class="filter-bar-lux">
+        <div class="filter-categories-lux">
+          <button class="filter-pill-lux active" data-category="all">All Styles (Sabhi)</button>
+          <button class="filter-pill-lux" data-category="men">Men's Edit</button>
+          <button class="filter-pill-lux" data-category="women">Women's Couture</button>
+          <button class="filter-pill-lux" data-category="ethnic">Royal Ethnic</button>
+          <button class="filter-pill-lux" data-category="kids">Little Royalty</button>
+        </div>
+
+        <div style="display: flex; gap: 14px; flex-wrap: wrap; align-items: center;">
+          <div style="display: flex; align-items: center; background: #faf6f0; border: 1px solid #ebdcd0; border-radius: 99px; padding: 8px 18px; min-width: 280px;">
+            <i class="fa-solid fa-magnifying-glass" style="color: #94a3b8; margin-right: 8px;"></i>
+            <input type="text" id="searchInput" placeholder="Kapde ya fabric ka naam search karein..." style="background: none; border: none; outline: none; font-size: 0.92rem; width: 100%; font-family: inherit;">
+          </div>
+
+          <select id="sortSelect" style="padding: 10px 18px; border-radius: 99px; border: 1px solid #ebdcd0; background: #faf6f0; font-family: inherit; font-size: 0.88rem; font-weight: 700; color: #1e293b; outline: none; cursor: pointer;">
+            <option value="default">Sort: Default Curated</option>
+            <option value="price-low">Rate: Saste se Mehenga</option>
+            <option value="price-high">Rate: Mehenge se Sasta</option>
+            <option value="newest">Naye Kapde Pehle</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-grid" id="allProductsGrid">
+        <!-- Rendered dynamically via js/main.js -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Luxury Floating WhatsApp Button -->
+  <a id="whatsappFloat" href="#" target="_blank" class="whatsapp-stylist-float" title="Live WhatsApp Stylist">
+    <i class="fa-brands fa-whatsapp" style="font-size: 1.5rem;"></i>
+    <span>Order on WhatsApp</span>
+  </a>
+
+  <!-- Luxury Footer -->
+  <footer class="luxury-footer">
+    <div class="container">
+      <div class="footer-lux-grid">
+        <div class="footer-brand">
+          <h2>Outfit<span>Waala</span></h2>
+          <p style="line-height: 1.8; max-width: 360px;">
+            A premier Indian fashion boutique bringing handcrafted fabrics, royal festive silhouettes and everyday contemporary elegance to your wardrobe.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Departments</h4>
+          <ul>
+            <li><a href="products.html?category=men">Men's Edit</a></li>
+            <li><a href="products.html?category=women">Women's Couture</a></li>
+            <li><a href="products.html?category=ethnic">Royal Ethnic</a></li>
+            <li><a href="products.html?category=kids">Little Royalty</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Direct Portals</h4>
+          <ul>
+            <li><a href="products.html">All Catalog</a></li>
+            <li><a href="cart.html">Shopping Bag</a></li>
+            <li><a href="contact.html">Store Location</a></li>
+            <li><a href="admin/login.html">Merchant Admin Panel</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Studio Concierge</h4>
+          <p style="font-size: 0.92rem; margin-bottom: 10px; color: #cbd5e1;">📍 <span class="store-address">Main Market, Shop 12, Delhi</span></p>
+          <p style="font-size: 0.92rem; margin-bottom: 10px; color: #cbd5e1;">📞 <span class="store-phone">+91 9876543210</span></p>
+          <p style="font-size: 0.85rem; color: #8e9bb0;">⏰ <span class="store-timing">10:00 AM - 9:30 PM (All 7 Days)</span></p>
+        </div>
+      </div>
+      <div class="footer-bottom-lux">
+        <p>&copy; 2026 OutfitWaala Luxury Studio. All Rights Reserved.</p>
+        <p style="margin-top: 10px; font-weight: 700; color: #d4af37; font-size: 0.92rem; letter-spacing: 0.5px;">
+          ✨ Developed with Excellence by <span style="background: linear-gradient(135deg, #d4af37 0%, #edd892 50%, #aa7c11 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; font-size: 1rem;">AJ STUDIO</span> by Aayush Jaiwal ✨
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

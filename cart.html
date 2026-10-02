@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Shopping Bag - OutfitWaala Haute Couture</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Top Luxury Ticker Bar -->
+  <div class="luxury-top-bar">
+    <div class="container">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span class="ticker-badge">SECURE BOUTIQUE ORDER</span>
+        <span>✨ Direct WhatsApp Confirmation with Dukandar. No Middleman Fees.</span>
+      </div>
+      <div>
+        <a href="tel:9876543210"><i class="fa-solid fa-phone-volume"></i> Helpline: <strong class="store-phone">+91 9876543210</strong></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ultra Premium Navbar -->
+  <header class="navbar">
+    <div class="container nav-content">
+      <a href="index.html" class="logo-container">
+        <div class="logo-crown-box">
+          <i class="fa-solid fa-crown"></i>
+        </div>
+        <div class="logo-text">
+          <h1>Outfit<span>Waala</span></h1>
+          <p>THE LUXURY FASHION STUDIO</p>
+        </div>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">All Collections</a></li>
+        <li><a href="products.html?category=men">Men's Edit</a></li>
+        <li><a href="products.html?category=women">Women's Couture</a></li>
+        <li><a href="products.html?category=ethnic">Royal Ethnic</a></li>
+        <li><a href="contact.html">Store & Stylist</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="cart.html" class="btn-cart-lux" style="background: var(--onyx); color: #fff; border-color: var(--onyx);">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span>Cart</span>
+          <span class="cart-badge-lux cart-badge" style="display: none;">0</span>
+        </a>
+        <a href="admin/login.html" class="btn-dukandar-portal">
+          <i class="fa-solid fa-store"></i>
+          <span>Dukandar Panel</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Cart Section -->
+  <main class="lux-section">
+    <div class="container">
+      <div style="margin-bottom: 35px;">
+        <span class="lux-pretitle">Order Review</span>
+        <h2 class="lux-title">Aapka Shopping Cart</h2>
+        <p class="lux-subtitle">Apne chuninda kapdo ko review karein aur seedhe dukandar ko WhatsApp par order bhejein</p>
+      </div>
+
+      <div class="cart-layout-lux">
+        <!-- Cart Items List -->
+        <div class="cart-card-lux" id="cartItemsContainer">
+          <!-- Populated dynamically via js/main.js -->
+        </div>
+
+        <!-- VIP Order Summary & Checkout -->
+        <div class="cart-card-lux" style="position: sticky; top: 110px;">
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 800; margin-bottom: 20px; color: var(--onyx); border-bottom: 1px solid var(--border-gold); padding-bottom: 12px;">
+            Order Summary
+          </h3>
+          
+          <div style="display: flex; justify-content: space-between; margin-bottom: 14px; font-size: 0.95rem; color: #475569;">
+            <span>Subtotal (Kapdo ka Total):</span>
+            <strong id="cartSubtotal" style="color: var(--onyx); font-size: 1.05rem;">₹0</strong>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; margin-bottom: 14px; font-size: 0.95rem; color: #475569;">
+            <span>Express Delivery:</span>
+            <strong style="color: #15803d; background: #dcfce7; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem;">COMPLIMENTARY (FREE)</strong>
+          </div>
+          
+          <div style="display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 1.3rem; font-weight: 800; color: var(--onyx); border-top: 2px dashed var(--border-gold); padding-top: 16px;">
+            <span>Total Payable:</span>
+            <span id="cartTotal" style="color: #c9184a;">₹0</span>
+          </div>
+
+          <!-- Customer details for WhatsApp order -->
+          <div style="margin-top: 24px; background: #faf6f0; padding: 20px; border-radius: 12px; border: 1px solid var(--border-gold);">
+            <h4 style="font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 800; margin-bottom: 14px; color: var(--onyx);">
+              🚚 Delivery Information:
+            </h4>
+            
+            <div style="margin-bottom: 12px;">
+              <label for="customerName" style="display: block; font-size: 0.82rem; font-weight: 700; color: var(--onyx); margin-bottom: 4px;">Aapka Poora Naam *</label>
+              <input type="text" id="customerName" placeholder="Jaise: Rohit Verma" style="width: 100%; padding: 10px 14px; border: 1px solid #ebdcd0; border-radius: 6px; font-family: inherit; font-size: 0.92rem; background: #fff;" required>
+            </div>
+
+            <div style="margin-bottom: 12px;">
+              <label for="customerPhone" style="display: block; font-size: 0.82rem; font-weight: 700; color: var(--onyx); margin-bottom: 4px;">WhatsApp Number *</label>
+              <input type="tel" id="customerPhone" placeholder="Jaise: 9876543210" style="width: 100%; padding: 10px 14px; border: 1px solid #ebdcd0; border-radius: 6px; font-family: inherit; font-size: 0.92rem; background: #fff;" required>
+            </div>
+
+            <div style="margin-bottom: 16px;">
+              <label for="customerAddress" style="display: block; font-size: 0.82rem; font-weight: 700; color: var(--onyx); margin-bottom: 4px;">Ghar Ka Pata (Full Address with Pincode) *</label>
+              <textarea id="customerAddress" rows="3" placeholder="Makaan No., Gali, Shahar, Pincode" style="width: 100%; padding: 10px 14px; border: 1px solid #ebdcd0; border-radius: 6px; font-family: inherit; font-size: 0.92rem; background: #fff;" required></textarea>
+            </div>
+
+            <button type="button" id="btnWhatsAppOrder" style="background: linear-gradient(135deg, #25d366 0%, #128c7e 100%); color: #fff; width: 100%; padding: 16px; border-radius: 8px; font-size: 1rem; font-weight: 800; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); transition: all 0.3s ease;">
+              <i class="fa-brands fa-whatsapp" style="font-size: 1.4rem;"></i>
+              <span>WhatsApp Par Order Bhejein</span>
+            </button>
+            <p style="font-size: 0.75rem; color: #78716c; text-align: center; margin-top: 10px;">
+              🔒 Direct dukandar ke WhatsApp par aapka poora bill aur address auto-send hoga.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Luxury Footer -->
+  <footer class="luxury-footer">
+    <div class="container">
+      <div class="footer-bottom-lux">
+        <p>&copy; 2026 OutfitWaala Luxury Studio. Sabhi Adhikar Surakshit.</p>
+        <p style="margin-top: 10px; font-weight: 700; color: #d4af37; font-size: 0.92rem; letter-spacing: 0.5px;">
+          ✨ Developed with Excellence by <span style="background: linear-gradient(135deg, #d4af37 0%, #edd892 50%, #aa7c11 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; font-size: 1rem;">AJ STUDIO</span> by Aayush Jaiwal ✨
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

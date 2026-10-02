@@ -1,0 +1,14 @@
+{
+  "name": "outfitwaala",
+  "version": "1.0.0",
+  "description": "OutfitWaala - Luxury Clothing Store & Dukandar Merchant Studio",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "serve": "node server.js"
+  },
+  "keywords": ["clothing", "ecommerce", "fashion", "boutique", "whatsapp-store"],
+  "author": "AJ STUDIO by Aayush Jaiwal",
+  "license": "ISC"
+}

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Merchant Studio Console - OutfitWaala</title>
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Admin Top Navbar -->
+  <nav class="admin-navbar">
+    <a href="dashboard.html" class="admin-brand">
+      <div class="admin-brand-logo">
+        <i class="fa-solid fa-crown"></i>
+      </div>
+      <div>
+        <h3>OutfitWaala <span>Merchant Studio</span></h3>
+      </div>
+    </a>
+
+    <div class="admin-actions">
+      <a href="../index.html" target="_blank" class="btn-view-store">
+        <i class="fa-solid fa-eye"></i>
+        <span>Live Store Dekhein</span>
+      </a>
+      <button onclick="adminLogout()" class="btn-logout">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        <span>Logout</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Admin Main Content -->
+  <main class="admin-main">
+    
+    <!-- Welcome Header -->
+    <div style="margin-bottom: 30px;">
+      <h1 style="font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 800; color: #fff;">
+        Namaste Dukandar Bhai! 🙏
+      </h1>
+      <p style="color: #94a3b8; font-size: 1rem; margin-top: 4px;">
+        Yahan se aap apne kapdo ki photo, selling rate, MRP aur stock aasaani se live manage kar sakte hain.
+      </p>
+    </div>
+
+    <!-- Summary Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-info">
+          <p>Kul Kapde (Live Products)</p>
+          <h3 id="statTotalProducts">0</h3>
+        </div>
+        <div class="stat-icon orange">
+          <i class="fa-solid fa-layer-group"></i>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-info">
+          <p>In Stock (Ready to Sell)</p>
+          <h3 id="statInStock">0</h3>
+        </div>
+        <div class="stat-icon green">
+          <i class="fa-solid fa-circle-check"></i>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-info">
+          <p>Out of Stock (Khatam)</p>
+          <h3 id="statOutStock">0</h3>
+        </div>
+        <div class="stat-icon purple">
+          <i class="fa-solid fa-boxes-packing"></i>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-info">
+          <p>Categories Active</p>
+          <h3 id="statCategories">4</h3>
+        </div>
+        <div class="stat-icon blue">
+          <i class="fa-solid fa-tags"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Products Management Section -->
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <div>
+          <h2>📦 Kapdo Ki Inventory & Live Rates</h2>
+          <small style="color: #8e9bb0;">Kapde ka rate badalne ke liye <strong>"Edit"</strong> dabayein, ya naya maal jodne ke liye right side ka button dabayein.</small>
+        </div>
+
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <button id="btnOpenAddModal" class="btn-add-product">
+            <i class="fa-solid fa-plus-circle"></i>
+            <span>+ Naya Kapda Add Karein</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Filter / Search Row -->
+      <div style="display: flex; gap: 16px; margin-bottom: 24px; flex-wrap: wrap;">
+        <input type="text" id="adminSearchInput" class="form-control" placeholder="🔍 Kapde ka naam search karein..." style="max-width: 320px;">
+        <select id="adminCategoryFilter" class="form-control" style="max-width: 200px; color: #fff; background: #090d16;">
+          <option value="all">Sabhi Categories</option>
+          <option value="Men">Men's Edit</option>
+          <option value="Women">Women's Couture</option>
+          <option value="Ethnic">Royal Ethnic</option>
+          <option value="Kids">Little Royalty</option>
+        </select>
+      </div>
+
+      <!-- Products Table -->
+      <div class="table-responsive">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Photo</th>
+              <th>Kapde Ka Naam</th>
+              <th>Category</th>
+              <th>Rate / MRP (₹)</th>
+              <th>Stock Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="adminProductsBody">
+            <!-- Loaded dynamically from admin.js -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Store Contact Settings Section -->
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <h2>⚙️ Dukaan Ki Settings (Phone, WhatsApp & Pata)</h2>
+      </div>
+
+      <form id="storeSettingsForm" class="form-grid">
+        <div class="form-group">
+          <label for="settingStoreName">Dukaan Ka Brand Naam</label>
+          <input type="text" id="settingStoreName" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label for="settingPhone">Calling Helpline Number</label>
+          <input type="tel" id="settingPhone" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label for="settingWhatsapp">WhatsApp Number (Jahan customer ke orders aayenge - Bina +, jaise: 919876543210)</label>
+          <input type="text" id="settingWhatsapp" class="form-control" placeholder="Jaise: 919876543210" required>
+        </div>
+
+        <div class="form-group full">
+          <label for="settingAddress">Dukaan Ka Poora Pata (Showroom Address)</label>
+          <input type="text" id="settingAddress" class="form-control" required>
+        </div>
+
+        <div class="form-group full">
+          <button type="submit" class="btn-save-product">
+            <i class="fa-solid fa-floppy-disk"></i> Dukaan Settings Save Karein
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Admin Footer -->
+    <div style="text-align: center; margin-top: 50px; padding: 25px 0; border-top: 1px solid var(--admin-border-subtle); color: #8e9bb0; font-size: 0.88rem;">
+      <p>&copy; 2026 OutfitWaala Merchant Studio. All Rights Reserved.</p>
+      <p style="margin-top: 8px; font-weight: 700; color: #d4af37; font-size: 0.92rem; letter-spacing: 0.5px;">
+        ✨ Developed with Excellence by <span style="background: linear-gradient(135deg, #d4af37 0%, #edd892 50%, #aa7c11 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; font-size: 1rem;">AJ STUDIO</span> by Aayush Jaiwal ✨
+      </p>
+    </div>
+
+  </main>
+
+  <!-- Modal for Adding / Editing Product -->
+  <div class="modal-overlay" id="productModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="modalTitle">Naya Kapda / Product Add Karein</h3>
+        <button class="btn-close-modal" id="btnCloseModal">&times;</button>
+      </div>
+
+      <form id="productForm">
+        <div class="form-group">
+          <label for="productName">Kapde Ka Naam *</label>
+          <input type="text" id="productName" class="form-control" placeholder="Jaise: Banarasi Pure Silk Saree" required>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="productCategory">Category Chunein *</label>
+            <select id="productCategory" class="form-control" required>
+              <option value="Men">Men (Purush)</option>
+              <option value="Women">Women (Mahilayein)</option>
+              <option value="Ethnic">Royal Ethnic & Festive</option>
+              <option value="Kids">Kids (Bachhe)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="productPrice">Aapka Selling Rate (₹) *</label>
+            <input type="number" id="productPrice" class="form-control" placeholder="Jaise: 1899" min="1" required>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="productMrp">Asli MRP (₹) <small style="color: #94a3b8;">(Discount tag dikhane ke liye)</small></label>
+            <input type="number" id="productMrp" class="form-control" placeholder="Jaise: 3499">
+          </div>
+
+          <div class="form-group">
+            <label>Homepage Par Highlight Karein?</label>
+            <div class="checkbox-group" style="margin-top: 12px;">
+              <input type="checkbox" id="productFeatured" checked>
+              <label for="productFeatured" style="font-weight: 500; cursor: pointer; color: #cbd5e1;">Trending section mein dikhayein</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image Upload & Live Preview -->
+        <div class="form-group">
+          <label>Kapde Ki Photo (Apne Phone / Computer Se Upload Karein) *</label>
+          <div class="image-preview-container">
+            <div class="image-preview-box">
+              <img id="imagePreview" src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=200&auto=format&fit=crop&q=80" alt="Preview">
+            </div>
+            <div class="image-options">
+              <label style="font-size: 0.82rem; color: #cbd5e1; font-weight: 700;">1. Gallery / Computer se photo select karein:</label>
+              <input type="file" id="productImageFile" accept="image/*" class="form-control" style="padding: 8px; font-size: 0.85rem; margin-bottom: 8px;">
+
+              <label style="font-size: 0.82rem; color: #cbd5e1; font-weight: 700;">2. Ya fir Internet Image URL paste karein:</label>
+              <input type="url" id="productImageUrl" class="form-control" placeholder="https://images.unsplash.com/photo-..." style="padding: 8px 12px; font-size: 0.85rem;">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="productDesc">Kapde Ka Vivaran (Description & Fabric Details)</label>
+          <textarea id="productDesc" rows="3" class="form-control" placeholder="Jaise: Pure Silk fabric with authentic zari border. Dry clean recommended."></textarea>
+        </div>
+
+        <div class="form-group">
+          <div class="checkbox-group">
+            <input type="checkbox" id="productInStock" checked>
+            <label for="productInStock" style="font-weight: 700; cursor: pointer; color: #34d399;">
+              ✅ Yeh kapda abhi dukaan mein uplabdh hai (In Stock)
+            </label>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-cancel" id="btnCancelModal">Cancel</button>
+          <button type="submit" class="btn-save-product">
+            <i class="fa-solid fa-check"></i> Kapda Live Save Karein
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

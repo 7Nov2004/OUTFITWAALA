@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Merchant Studio Login - OutfitWaala</title>
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <div class="login-container">
+    <div class="login-card">
+      <div class="login-header">
+        <div class="login-logo">
+          <i class="fa-solid fa-crown"></i>
+        </div>
+        <h2>OutfitWaala Merchant Studio</h2>
+        <p>Dukandar Kapdo & Rate Management Console</p>
+      </div>
+
+      <div class="login-hint">
+        <strong>🔑 Default Login Credentials:</strong><br>
+        Username: <code>admin</code><br>
+        Password: <code>admin123</code>
+      </div>
+
+      <div id="loginError" style="display: none; background: rgba(239, 68, 68, 0.2); border: 1px solid rgba(239, 68, 68, 0.4); color: #fca5a5; padding: 12px; border-radius: 8px; margin-bottom: 20px; font-size: 0.88rem; font-weight: 600;"></div>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="adminUsername">Username / Store ID</label>
+          <input type="text" id="adminUsername" class="form-control" value="admin" required autofocus>
+        </div>
+
+        <div class="form-group">
+          <label for="adminPassword">Password</label>
+          <input type="password" id="adminPassword" class="form-control" value="admin123" required>
+        </div>
+
+        <button type="submit" class="btn-save-product" style="width: 100%; margin-top: 10px; font-size: 1.05rem;">
+          <i class="fa-solid fa-right-to-bracket"></i> Login To Merchant Studio
+        </button>
+
+        <div style="text-align: center; margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--admin-border-subtle);">
+          <a href="../index.html" style="color: #94a3b8; font-size: 0.85rem; text-decoration: none; display: block; margin-bottom: 12px;">
+            ← Wapas Boutique Website Par Jayein
+          </a>
+          <p style="font-size: 0.78rem; color: #d4af37; font-weight: 700; letter-spacing: 0.5px;">
+            ✨ Developed by <strong style="color: #fff;">AJ STUDIO</strong> by Aayush Jaiwal ✨
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>
