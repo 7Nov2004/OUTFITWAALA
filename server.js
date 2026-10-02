@@ -28,30 +28,39 @@ const MIME_TYPES = {
 };
 
 const server = http.createServer((req, res) => {
-  // Parse URL & remove query params
-  let parsedUrl = req.url.split('?')[0].trim();
-  let lowerUrl = parsedUrl.toLowerCase();
+  const rawUrl = req.url.split('?')[0].trim();
+  const lowerUrl = rawUrl.toLowerCase();
 
-  // Route aliases (case-insensitive & clean URLs)
+  console.log(`[${new Date().toLocaleTimeString()}] ${req.method} ${req.url}`);
+
+  // 1. Instant 302 redirect for any admin entry
+  if (
+    (lowerUrl === '/admin' || lowerUrl === '/admin/' || lowerUrl.startsWith('/admin?') || lowerUrl === '/login') &&
+    !lowerUrl.includes('login.html')
+  ) {
+    res.writeHead(302, { 'Location': '/admin/login.html' });
+    return res.end();
+  }
+
+  // 2. Route aliases
+  let parsedUrl = rawUrl;
   if (lowerUrl === '' || lowerUrl === '/') {
     parsedUrl = '/index.html';
-  } else if (lowerUrl === '/admin' || lowerUrl === '/admin/' || lowerUrl === '/admin/login' || lowerUrl === '/admin/login.html' || lowerUrl === '/login') {
-    parsedUrl = '/admin/login.html';
-  } else if (lowerUrl === '/admin/dashboard' || lowerUrl === '/admin/dashboard.html' || lowerUrl === '/dashboard') {
+  } else if (lowerUrl === '/admin/dashboard' || lowerUrl === '/dashboard') {
     parsedUrl = '/admin/dashboard.html';
-  } else if (lowerUrl === '/products' || lowerUrl === '/products.html') {
+  } else if (lowerUrl === '/products') {
     parsedUrl = '/products.html';
-  } else if (lowerUrl === '/cart' || lowerUrl === '/cart.html') {
+  } else if (lowerUrl === '/cart') {
     parsedUrl = '/cart.html';
-  } else if (lowerUrl === '/contact' || lowerUrl === '/contact.html') {
+  } else if (lowerUrl === '/contact') {
     parsedUrl = '/contact.html';
   }
 
-  // Safe file path resolution
+  // 3. Safe file path resolution
   const safePath = path.normalize(parsedUrl).replace(/^(\.\.[\/\\])+/, '');
   let filePath = path.join(ROOT_DIR, safePath);
 
-  // If path is a directory (e.g. /admin), serve index.html or login.html
+  // If path is a directory (e.g. /admin/), serve login.html
   if (fs.existsSync(filePath) && fs.statSync(filePath).isDirectory()) {
     if (fs.existsSync(path.join(filePath, 'login.html'))) {
       filePath = path.join(filePath, 'login.html');
@@ -69,10 +78,14 @@ const server = http.createServer((req, res) => {
     if (err || !stats.isFile()) {
       res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
       res.end(`
-        <div style="font-family: sans-serif; text-align: center; padding: 60px;">
-          <h1 style="color: #e11d48;">404 - Page Nahi Mila</h1>
-          <p>Aap jis page ko dhoondh rahe hain wo maujood nahi hai.</p>
-          <a href="/" style="color: #2563eb; font-weight: bold;">← Homepage Par Jayein</a>
+        <div style="font-family: 'Plus Jakarta Sans', sans-serif, system-ui; text-align: center; padding: 70px 20px; background: #faf7f2; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+          <div style="font-size: 3.5rem; margin-bottom: 10px;">👑</div>
+          <h1 style="color: #0f172a; font-size: 2.2rem; font-weight: 800; margin-bottom: 8px;">OutfitWaala Navigation</h1>
+          <p style="color: #64748b; font-size: 1rem; margin-bottom: 25px;">Aapne jo URL kholi (<code>${req.url}</code>) wo yahan uplabdh nahi hai.</p>
+          <div style="display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;">
+            <a href="/" style="background: #0f172a; color: #fff; padding: 14px 28px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.95rem;">🛍️ Customer Homepage</a>
+            <a href="/admin/login.html" style="background: #ea580c; color: #fff; padding: 14px 28px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.95rem;">🔐 Dukandar / Admin Login</a>
+          </div>
         </div>
       `);
       return;
