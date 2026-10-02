@@ -29,16 +29,41 @@ const MIME_TYPES = {
 
 const server = http.createServer((req, res) => {
   // Parse URL & remove query params
-  let parsedUrl = req.url.split('?')[0];
-  if (parsedUrl === '/') {
+  let parsedUrl = req.url.split('?')[0].trim();
+  let lowerUrl = parsedUrl.toLowerCase();
+
+  // Route aliases (case-insensitive & clean URLs)
+  if (lowerUrl === '' || lowerUrl === '/') {
     parsedUrl = '/index.html';
-  } else if (parsedUrl === '/admin' || parsedUrl === '/admin/') {
+  } else if (lowerUrl === '/admin' || lowerUrl === '/admin/' || lowerUrl === '/admin/login' || lowerUrl === '/admin/login.html' || lowerUrl === '/login') {
     parsedUrl = '/admin/login.html';
+  } else if (lowerUrl === '/admin/dashboard' || lowerUrl === '/admin/dashboard.html' || lowerUrl === '/dashboard') {
+    parsedUrl = '/admin/dashboard.html';
+  } else if (lowerUrl === '/products' || lowerUrl === '/products.html') {
+    parsedUrl = '/products.html';
+  } else if (lowerUrl === '/cart' || lowerUrl === '/cart.html') {
+    parsedUrl = '/cart.html';
+  } else if (lowerUrl === '/contact' || lowerUrl === '/contact.html') {
+    parsedUrl = '/contact.html';
   }
 
   // Safe file path resolution
   const safePath = path.normalize(parsedUrl).replace(/^(\.\.[\/\\])+/, '');
-  const filePath = path.join(ROOT_DIR, safePath);
+  let filePath = path.join(ROOT_DIR, safePath);
+
+  // If path is a directory (e.g. /admin), serve index.html or login.html
+  if (fs.existsSync(filePath) && fs.statSync(filePath).isDirectory()) {
+    if (fs.existsSync(path.join(filePath, 'login.html'))) {
+      filePath = path.join(filePath, 'login.html');
+    } else if (fs.existsSync(path.join(filePath, 'index.html'))) {
+      filePath = path.join(filePath, 'index.html');
+    }
+  }
+
+  // If file doesn't exist, try appending .html
+  if (!fs.existsSync(filePath) && fs.existsSync(filePath + '.html')) {
+    filePath = filePath + '.html';
+  }
 
   fs.stat(filePath, (err, stats) => {
     if (err || !stats.isFile()) {
