@@ -32,6 +32,8 @@ const server = http.createServer((req, res) => {
   let parsedUrl = req.url.split('?')[0];
   if (parsedUrl === '/') {
     parsedUrl = '/index.html';
+  } else if (parsedUrl === '/admin' || parsedUrl === '/admin/') {
+    parsedUrl = '/admin/login.html';
   }
 
   // Safe file path resolution
